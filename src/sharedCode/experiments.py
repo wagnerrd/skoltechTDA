@@ -7,12 +7,12 @@ import numpy
 import datetime
 import os
 
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Sampler
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.preprocessing.label import LabelEncoder
 from collections import defaultdict
 from torch.nn import Module
-from ....chofer_torchxx.chofer_torchex.nn import SLayer
+from slayer import SLayer
 
 
 class PersistenceDiagramProviderCollate:
@@ -57,7 +57,7 @@ class PersistenceDiagramProviderCollate:
         return batch_views_unprepared, targets
 
 
-class SubsetRandomSampler:
+class SubsetRandomSampler(Sampler):
     def __init__(self, indices):
         self.indices = indices
 
